@@ -11,7 +11,7 @@ The EDNS SDK provides tools for interacting with EDNS smart contracts and resolv
 
 ## EDNS SDK Data Types Documentation
 
-- [TypedText](#typedtext)
+- [TypedText](types.md#typedtext)
   - [Available TypedText Values](types.md#available-typedtext-values)
 - [TypedAddress](types.md#typedaddress)
   - [Available TypedAddress Values](types.md#available-typedaddress-values)

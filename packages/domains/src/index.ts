@@ -1,4 +1,4 @@
-import { EdnsChainId, getFqdnBytes, EDNS } from "@edns/core";
+import { EdnsChainId, getFqdnBytes, EDNS } from "@ednsdomains/core";
 
 export class DomainManager {
   private edns: EDNS = EDNS.getInstance();

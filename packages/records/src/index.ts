@@ -1,4 +1,4 @@
-import { EDNS, EdnsChainId, TypedAddress, TypedText } from "@edns/core";
+import { EDNS, EdnsChainId, TypedAddress, TypedText } from "@ednsdomains/core";
 
 export class RecordManager {
   private edns: EDNS = EDNS.getInstance();
