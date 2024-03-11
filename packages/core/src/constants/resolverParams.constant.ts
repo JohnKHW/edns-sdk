@@ -1,4 +1,4 @@
-export const RESOLVER_PARAMS = {
+export const ResolverParams = {
   net: "mainnet",
   onchain: false,
   version: "v2",
