@@ -16,7 +16,7 @@
     "web3"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "build": "concurrently 'npm run build:cjs' 'npm run build:es' 'npm run build:types'",
     "build:cjs": "tsc -p tsconfig.cjs.json && npm run lint",
     "build:es": "tsc -p tsconfig.es.json",
@@ -27,8 +27,11 @@
   "author": "EDNS Foundation Developer Team",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "concurrently": "^8.2.2",
+    "jest": "^29.7.0",
     "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
