@@ -1,1 +1,1 @@
-export * from "./network.enum";
+export * from "./net.enum";
