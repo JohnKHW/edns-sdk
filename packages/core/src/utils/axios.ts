@@ -1,6 +1,4 @@
-// import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 
 const onDownloadProgress = () => {
   // do your thing here}
@@ -16,9 +14,10 @@ const instance = axios.create({
   },
   timeout: 50000,
 });
+instance.interceptors.request.use();
 
 instance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: InternalAxiosRequestConfig) => {
     // Do something before request is sent
     return {
       ...config,
