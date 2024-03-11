@@ -1,15 +1,17 @@
-import { EdnsChainId, getFqdnBytes, EDNS } from "@ednsdomains/core";
+import { EdnsChainId, getFqdnBytes, EDNS, Net } from "@ednsdomains/core";
 
 export class DomainManager {
   private edns: EDNS = EDNS.getInstance();
 
   private factoryType: "chain" | "api" = "chain";
+  private net: Net;
 
   // private tld: Uint8Array;
   // private name: Uint8Array;
 
-  public constructor(factoryType: "chain" | "api") {
+  public constructor(factoryType: "chain" | "api", net: Net = Net.MAINNET) {
     this.factoryType = factoryType;
+    this.net = net;
   }
 
   public IsDomainAvaliable = async (
@@ -45,19 +47,30 @@ export class DomainManager {
     );
   };
 
-  public IsExist = async (fqdn: string, chainId: EdnsChainId) => {
-    const factory = this.edns.getFactory(this.factoryType, chainId);
-
+  public IsExist = async (fqdn: string, chainId?: EdnsChainId) => {
+    const factory = this.edns.getFactory({
+      type: this.factoryType,
+      net: this.net,
+      chainId,
+    });
     return await factory.isExists(fqdn);
   };
 
-  public GetOwner = async (fqdn: string, chainId: EdnsChainId) => {
-    const factory = this.edns.getFactory(this.factoryType, chainId);
+  public GetOwner = async (fqdn: string, chainId?: EdnsChainId) => {
+    const factory = this.edns.getFactory({
+      type: this.factoryType,
+      net: this.net,
+      chainId,
+    });
     return await factory.getOwner(fqdn);
   };
 
-  public GetExpiry = async (fqdn: string, chainId: EdnsChainId) => {
-    const factory = this.edns.getFactory(this.factoryType, chainId);
+  public GetExpiry = async (fqdn: string, chainId?: EdnsChainId) => {
+    const factory = this.edns.getFactory({
+      type: this.factoryType,
+      net: this.net,
+      chainId,
+    });
     return await factory.getExpiry(fqdn);
   };
 
