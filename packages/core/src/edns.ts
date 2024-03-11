@@ -25,7 +25,13 @@ import { namehash } from "ethers/lib/utils";
 import { getDomainType, getFqdnBytes } from "./utils";
 import { ContractFactory } from "./factories/contract.factory";
 import { ApiFactory } from "./factories/api.factory";
+import { Net } from "./enums";
 
+interface IGetFactoryInput {
+  type: "chain" | "api";
+  chainId?: EdnsChainId;
+  net?: Net;
+}
 export class EDNS {
   private static _instance: EDNS;
 
@@ -211,14 +217,14 @@ export class EDNS {
     return this.registries[chainId];
   }
 
-  public getFactory(type: "chain" | "api", chainId?: EdnsChainId) {
+  public getFactory({ type, chainId, net }: IGetFactoryInput) {
     if (type === "chain" && chainId) {
       return new ContractFactory({
         registry: this.registries[chainId],
         resolver: this.publicResolvers[chainId],
       });
     } else {
-      return new ApiFactory();
+      return new ApiFactory({ net });
     }
   }
 
